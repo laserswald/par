@@ -5,6 +5,8 @@
 # * Adam M. Costello  *
 # *********************
 
+PREFIX := /usr/local
+MANPREFIX := ${PREFIX}/share/man
 
 #####
 ##### Instructions
@@ -110,3 +112,12 @@ reformat$O: reformat.c reformat.h errmsg.h buffer.h
 
 clean:
 	$(RM) par $(OBJS) $(JUNK)
+
+install:
+	mkdir -p ${DESTDIR}${PREFIX}/bin
+	cp -f par ${DESTDIR}${PREFIX}/bin
+	chmod 755 ${DESTDIR}${PREFIX}/bin/par
+	mkdir -p ${DESTDIR}${MANPREFIX}/man1
+	cp -f par.1 ${DESTDIR}${MANPREFIX}/man1/par.1
+	chmod 644 ${DESTDIR}${MANPREFIX}/man1/par.1
+	
